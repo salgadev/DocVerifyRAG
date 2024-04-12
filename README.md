@@ -1,15 +1,19 @@
-# DocVerifyRAG: Document Verification and Anomaly Detection
-
-## Application Description
-
-DocVerifyRAG is a revolutionary tool designed to streamline document verification processes in hospitals. It utilizes AI to classify documents and identify mistakes in metadata, ensuring accurate and efficient document management. Inspired by the need for improved data accuracy in healthcare, DocVerifyRAG provides automated anomaly detection to identify misclassifications and errors in document metadata, enhancing data integrity and compliance with regulatory standards.
+<!-- PROJECT TITLE -->
+  <h1 align="center">DocVerifyRAG: Document Verification and Anomaly Detection</h1>
+ <div id="header" align="center">
+  <img src="./assets/img.png" width="270"/>
+</div>
+<h1 align="center">
+ About
+</h1>
+<p align="center"> DocVerifyRAG is a revolutionary tool designed to streamline document verification processes in hospitals. It utilizes AI to classify documents and identify mistakes in metadata, ensuring accurate and efficient document management. Inspired by the need for improved data accuracy in healthcare, DocVerifyRAG provides automated anomaly detection to identify misclassifications and errors in document metadata, enhancing data integrity and compliance with regulatory standards. </p>
 
 ## Table of Contents
 
 <details>
 <summary>Table of Contents</summary>
 
-- [DocVerifyRAG: Document Verification and Anomaly Detection](#docverifyrag-document-verification-and-anomaly-detection)
+- [DocVerifyRAG](#docverifyrag-document-verification-and-anomaly-detection)
 - [Application Description](#application-description)
 - [Table of Contents](#table-of-contents)
 - [Installation](#installation)
