@@ -89,7 +89,7 @@ To deploy DocVerifyRAG using Docker, follow these steps:
 2. Run the Docker container:
 
     ```bash
-    $ docker run -d -p 5000:5000 <dockerhub_username>/docverifyrag:latest
+    $ docker run -d -p 5000:5000 sandramsc/docverifyrag:latest
     ```
 
 ### Usage
