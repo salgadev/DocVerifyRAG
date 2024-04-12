@@ -19,14 +19,14 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    if: success()
+      - name: DockerHub Login
+        uses: docker/login-action@v2.1.0
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-    steps:
-      - name: Build and push Docker image
-        run: |
-          docker build -t sandramsc/docverifyrag:latest .
-          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-          docker push sandramsc/docverifyrag:latest
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag ${{ secrets.DOCKERHUB_USERNAME }}/docverifyrag
+
+      - name: Docker Push
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/docverifyrag
