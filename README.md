@@ -1,6 +1,6 @@
 <!-- PROJECT TITLE -->
   <h1 align="center">DocVerifyRAG: Document Verification and Anomaly Detection</h1>
- <div id="header" align="center">g
+ <div id="header" align="center">
 </div>
 <h1 align="center">
  About
