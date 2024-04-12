@@ -10,12 +10,12 @@
 ## Table of Contents
 
 <details>
-<summary>Table of Contents</summary>
-
-- [DocVerifyRAG](#docverifyrag-document-verification-and-anomaly-detection)
+<summary>DocVerifyRAG</summary>
+  
 - [Application Description](#application-description)
 - [Table of Contents](#table-of-contents)
-- [Installation](#installation)
+- [Local installation](#install-locally)
+- [Install using Docker](#install-using-docker)
 - [Usage](#usage)
 - [Contributing](#contributing)
 - [Authors](#authors)
