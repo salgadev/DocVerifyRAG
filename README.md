@@ -63,7 +63,7 @@
 
 1. Clone the repository:
     ```bash
-    $ git clone https://github.com/your-username/DocVerifyRAG.git
+    $ git clone https://github.com/eliawaefler/DocVerifyRAG.git
     ```
 
 2. Navigate to the project directory:
@@ -80,16 +80,16 @@
 
 To deploy DocVerifyRAG using Docker, follow these steps:
 
-1. Build a Docker image for the application:
+1. Pull the Docker image from Docker Hub:
 
     ```bash
-    $ docker build -t docverifyrag .
+    $ docker pull sandra/docverifyrag:latest
     ```
 
 2. Run the Docker container:
 
     ```bash
-    $ docker run -d -p 5000:5000 docverifyrag
+    $ docker run -d -p 5000:5000 sandramsc/docverifyrag:latest
     ```
 
 ### Usage
