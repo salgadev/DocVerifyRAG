@@ -2,8 +2,4 @@ langchain_community
 langchain-text-splitters
 langchain-together
 unstructured[local-inference]
-pdf2image
-pdfminer.six
-pillow_heif
-doctran
 python-dotenv

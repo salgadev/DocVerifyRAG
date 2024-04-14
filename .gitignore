@@ -1,7 +1,7 @@
 .envrc
 .direnv/
-flake.lock
-flake.nix
+*.lock
 .env
 .venv
+.ipynb_checkpoints
 
