@@ -1,4 +1,4 @@
-import { Badge } from "./ui/badge";
+import { Badge } from "./ui/badge"; 
 import {
   Card,
   CardTitle,
@@ -6,7 +6,7 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import image4 from "../assets/looking-ahead.png";
-
+//import { Upload } from "./upload";
 
 interface FeatureProps {
   title: string;
@@ -66,6 +66,9 @@ export const Features = () => {
                 alt="About feature"
                 className="w-[150px] lg:w-[300px] mx-auto"
               />
+{/* Upload sections */}
+
+     
             </CardFooter>
           </Card>
         ))}

@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Button } from "./ui/button";
+import { buttonVariants } from "./ui/button";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -11,8 +13,6 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { GitHubLogoIcon } from "@radix-ui/react-icons";
-import { buttonVariants } from "./ui/button";
 import { Menu } from "lucide-react";
 import { ModeToggle } from "./mode-toggle";
 import { LogoIcon } from "./Icons";
@@ -73,26 +73,10 @@ export const Navbar = () => {
                   </SheetTitle>
                 </SheetHeader>
                 <nav className="flex flex-col justify-center items-center gap-2 mt-4">
-                  {routeList.map(({ href, label }: RouteProps) => (
-                    <a
-                      key={label}
-                      href={href}
-                      onClick={() => setIsOpen(false)}
-                      className={buttonVariants({ variant: "ghost" })}
-                    >
-                      {label}
-                    </a>
-                  ))}
-                  <a
-                    href="#"
-                    target="_blank"
-                    className={`w-[110px] border ${buttonVariants({
-                      variant: "secondary",
-                    })}`}
-                  >
-                    <GitHubLogoIcon className="mr-0 w-14 h-5" />
-                    Join Waitlist
-                  </a>
+                   <a>
+                <Button className="w-full md:w-2/3">Join Waitlist</Button>
+           </a>
+                  
                 </nav>
               </SheetContent>
             </Sheet>
@@ -114,15 +98,10 @@ export const Navbar = () => {
           </nav>
 
           <div className="hidden md:flex gap-2">
-            <a
-              href="https://github.com/leoMirandaa/shadcn-landing-page.git"
-              target="_blank"
-              className={`border ${buttonVariants({ variant: "secondary" })}`}
-            >
-              <GitHubLogoIcon className="mr-0 w-8 h-5" />
-              Join Waitlist
-            </a>
-
+            <a>
+		<Button className="w-full ">Join Waitlist
+</Button>
+	   </a>
             <ModeToggle />
           </div>
         </NavigationMenuList>
