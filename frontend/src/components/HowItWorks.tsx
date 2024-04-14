@@ -10,27 +10,19 @@ interface FeatureProps {
 const features: FeatureProps[] = [
   {
     icon: <MedalIcon />,
-    title: "Accesibility",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum quas provident cum",
-  },
+    title: "Document Classification",
+    description:    "Utilizes AI/ML algorithms to classify documents based on content and metadata",  },
   {
     icon: <MapIcon />,
-    title: "Community",
+    title: "Anomaly Detection",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum quas provident cum",
+      "Identifies mistakes and misclassifications in document metadata through automated anomaly detection",
   },
   {
     icon: <PlaneIcon />,
-    title: "Scalability",
+    title: "User-Friendly Interface",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum quas provident cum",
-  },
-  {
-    icon: <GiftIcon />,
-    title: "Gamification",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum quas provident cum",
+      "Simplifies the document management process for hospital staff, reducing manual effort and errors",
   },
 ];
 
@@ -48,11 +40,10 @@ export const HowItWorks = () => {
        Verification
       </h2>
       <p className="md:w-3/4 mx-auto mt-4 mb-8 text-xl text-muted-foreground">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis
-        dolor pariatur sit!
+        DocVerifyRAG revolutionizes document verification in healthcare, harnessing AI to classify documents and rectify metadata errors. With automated anomaly detection, ensure precise data management, compliance, and enhanced patient care.
       </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {features.map(({ icon, title, description }: FeatureProps) => (
           <Card
             key={title}
