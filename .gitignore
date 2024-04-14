@@ -1,0 +1,7 @@
+.envrc
+.direnv/
+flake.lock
+flake.nix
+.env
+.venv
+
