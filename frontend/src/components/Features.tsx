@@ -6,7 +6,7 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import image4 from "../assets/looking-ahead.png";
-//import { Upload } from "./upload";
+//import { UploadDoc } from "./upload/streamlit_app.py";
 
 interface FeatureProps {
   title: string;
