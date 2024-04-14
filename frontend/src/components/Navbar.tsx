@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button } from "./ui/button";
+import LogoIcon from "../assets/logo.png";
 import { buttonVariants } from "./ui/button";
 import {
   NavigationMenu,
@@ -15,12 +16,21 @@ import {
 } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { ModeToggle } from "./mode-toggle";
-import { LogoIcon } from "./Icons";
 
 interface RouteProps {
   href: string;
   label: string;
 }
+
+interface FeatureProps {
+  image: string;
+}
+
+const features: FeatureProps[] = [
+  {
+    image: LogoIcon,
+  },
+];
 
 const routeList: RouteProps[] = [
   {
@@ -44,9 +54,14 @@ export const Navbar = () => {
               href="/"
               className="ml-2 font-bold text-xl flex"
             >
-              <LogoIcon />
-              DocVerifyRAG
-            </a>
+         {features.map(({ image }: FeatureProps) => (
+    
+              <img
+                src={LogoIcon}
+                alt="About feature"
+                className="w-[18px] lg:w-[28px] mx-2"
+              />
+        ))}DocVerifyRAG</a>
           </NavigationMenuItem>
 
           {/* mobile */}

@@ -1,4 +1,6 @@
-import { LogoIcon } from "./Icons";
+import LogoIcon from "../assets/logo.png";
+
+interface FeatureProps {                                                      image: string;                                                            }                                                                                                                                                       const features: FeatureProps[] = [                                            {                                                                             image: LogoIcon,                                                          },                                                                        ];
 
 export const Footer = () => {
   return (
@@ -11,8 +13,14 @@ export const Footer = () => {
             href="/"
             className="font-bold text-xl flex"
           >
-            <LogoIcon />
-            DocVerifyRAG
+             {features.map(({ image }: FeatureProps) => (
+
+              <img
+                src={LogoIcon}
+                alt="About feature"
+                className="w-[18px] lg:w-[28px] mx-2"
+              />
+        ))}    DocVerifyRAG
           </a>
         </div>
 
