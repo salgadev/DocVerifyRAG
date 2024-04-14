@@ -2,7 +2,6 @@ import { Badge } from "./ui/badge";
 import {
   Card,
   CardTitle,
-  CardContent,
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
