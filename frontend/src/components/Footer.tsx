@@ -12,140 +12,74 @@ export const Footer = () => {
             className="font-bold text-xl flex"
           >
             <LogoIcon />
-            ShadcnUI/React
+            DocVerifyRAG
           </a>
         </div>
 
         <div className="flex flex-col gap-2">
-          <h3 className="font-bold text-lg">Follow US</h3>
-          <div>
+          <h3 className="font-bold text-lg">About Us</h3>
+        
+<div>
             <a
               href="#"
               className="opacity-60 hover:opacity-100"
             >
-              Github
+              GitHub
             </a>
           </div>
+</div>
+       <div className="flex flex-col gap-2">
+          <h3 className="font-bold text-lg">Industries</h3>
 
-          <div>
+<div>
             <a
               href="#"
               className="opacity-60 hover:opacity-100"
             >
-              Twitter
+              Health
             </a>
           </div>
-
-          <div>
+<div>
             <a
               href="#"
               className="opacity-60 hover:opacity-100"
             >
-              Dribbble
+              FinTech
             </a>
           </div>
-        </div>
-
+<div>
+            <a
+              href="#"
+              className="opacity-60 hover:opacity-100"
+            >
+              Banking
+            </a>
+          </div>
+</div>
         <div className="flex flex-col gap-2">
-          <h3 className="font-bold text-lg">Platforms</h3>
+          <h3 className="font-bold text-lg">Follow Us</h3>
           <div>
             <a
               href="#"
               className="opacity-60 hover:opacity-100"
             >
-              Web
+              GitHub
             </a>
           </div>
 
-          <div>
-            <a
-              href="#"
-              className="opacity-60 hover:opacity-100"
-            >
-              Mobile
-            </a>
-          </div>
-
-          <div>
-            <a
-              href="#"
-              className="opacity-60 hover:opacity-100"
-            >
-              Desktop
-            </a>
-          </div>
-        </div>
-
-        <div className="flex flex-col gap-2">
-          <h3 className="font-bold text-lg">About</h3>
-          <div>
-            <a
-              href="#"
-              className="opacity-60 hover:opacity-100"
-            >
-              Features
-            </a>
-          </div>
-
-          <div>
-            <a
-              href="#"
-              className="opacity-60 hover:opacity-100"
-            >
-              Pricing
-            </a>
-          </div>
-
-          <div>
-            <a
-              href="#"
-              className="opacity-60 hover:opacity-100"
-            >
-              FAQ
-            </a>
-          </div>
-        </div>
-
-        <div className="flex flex-col gap-2">
-          <h3 className="font-bold text-lg">Community</h3>
-          <div>
-            <a
-              href="#"
-              className="opacity-60 hover:opacity-100"
-            >
-              Youtube
-            </a>
-          </div>
-
-          <div>
-            <a
-              href="#"
-              className="opacity-60 hover:opacity-100"
-            >
-              Discord
-            </a>
-          </div>
-
-          <div>
-            <a
-              href="#"
-              className="opacity-60 hover:opacity-100"
-            >
-              Twitch
-            </a>
-          </div>
-        </div>
+        
+</div>
       </section>
 
       <section className="container pb-14 text-center">
         <h3>
-          &copy; 2024 Landing page made by{" "}
+          &copy; 2024 Efficient Document Verification by{" "}
           <a
             target="_blank"
-            href="https://github.com/leoMirandaa"
+            href="https://github.com/eliawaefler/DocVerifyRAG"
             className="text-primary transition-all border-primary hover:border-b-2"
           >
-            Leo Miranda
+            DocVerifyRAG
           </a>
         </h3>
       </section>
