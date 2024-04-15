@@ -58,10 +58,10 @@ export const Features = () => {
             </CardHeader>
             <CardFooter>
               <iframe className="mx-auto"
-        src="https://docverifyrag.streamlit.app/"
+        src="https://docverifyrag.streamlit.app"
         width="80%"
         height="400px"
-        style={{ border: 'none' }} // Optional: Removes iframe border
+        style={{ border: 'none' }}
       /> 
             </CardFooter>
           </Card>
