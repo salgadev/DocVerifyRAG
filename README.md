@@ -23,10 +23,6 @@
 
 </details>
 
-## Video Demo
-
-[link](https://link.com)
-
 ## Web App
 
 [link](https://link.com)

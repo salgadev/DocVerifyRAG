@@ -5,18 +5,14 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
-import image4 from "../assets/looking-ahead.png";
-//import { UploadDoc } from "./upload/streamlit_app.py";
 
 interface FeatureProps {
   title: string;
-  image: string;
 }
 
 const features: FeatureProps[] = [
   {
     title: "UPLOAD DOCUMENT",
-    image: image4,
   },
 ];
 
@@ -31,7 +27,7 @@ export const Features = () => {
   return (
     <section
       id="features"
-      className="container py-24 sm:py-32 space-y-8"
+      className="container py-28 sm:py-36 space-y-8"
     >
       <h2 className="text-3xl lg:text-4xl font-bold md:text-center">
         Get Started{" "}
@@ -55,20 +51,18 @@ export const Features = () => {
       </div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-1">
-        {features.map(({ title, image }: FeatureProps) => (
+        {features.map(({ title }: FeatureProps) => (
           <Card key={title}>
 	   <CardHeader className="text-3xl lg:text-4xl font-bold md:text-center">
               <CardTitle>{title}</CardTitle>
             </CardHeader>
             <CardFooter>
-              <img
-                src={image}
-                alt="About feature"
-                className="w-[150px] lg:w-[300px] mx-auto"
-              />
-{/* Upload sections */}
-
-     
+              <iframe className="mx-auto"
+        src="https://docverifyrag.streamlit.app/"
+        width="80%"
+        height="400px"
+        style={{ border: 'none' }} // Optional: Removes iframe border
+      /> 
             </CardFooter>
           </Card>
         ))}
