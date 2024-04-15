@@ -24,7 +24,7 @@ WORKDIR /app/backend
 COPY backend .
 
 # Install backend dependencies
-COPY requirements.txt .
+COPY backend/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Stage 3: Serve frontend and backend using nginx and gunicorn
