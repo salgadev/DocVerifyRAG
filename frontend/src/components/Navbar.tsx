@@ -57,7 +57,7 @@ export const Navbar = () => {
          {features.map(({ image }: FeatureProps) => (
     
               <img
-                src={LogoIcon}
+                src={image}
                 alt="About feature"
                 className="w-[18px] lg:w-[28px] mx-2"
               />
