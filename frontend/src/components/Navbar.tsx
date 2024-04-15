@@ -58,7 +58,7 @@ export const Navbar = () => {
     
               <img
                 src={image}
-                alt="About feature"
+                alt="logo.png"
                 className="w-[18px] lg:w-[28px] mx-2"
               />
         ))}DocVerifyRAG</a>
