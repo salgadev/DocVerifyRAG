@@ -56,13 +56,13 @@ export const Features = () => {
 	   <CardHeader className="text-3xl lg:text-4xl font-bold md:text-center">
               <CardTitle>{title}</CardTitle>
             </CardHeader>
-            <CardFooter>
-              <iframe className="mx-auto"
-        src="https://docverifyrag.streamlit.app"
-        width="80%"
-        height="400px"
-        style={{ border: 'none' }}
-      /> 
+            <CardFooter className="flex flex-wrap md:justify-center gap-4">
+              <iframe
+	src="https://sandramsc-docverifyrag.hf.space"
+	style={{ border: 'none' }}
+	width="850"
+	height="450"
+></iframe> 
             </CardFooter>
           </Card>
         ))}
