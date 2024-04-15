@@ -1,0 +1,15 @@
+Diese Beschreibung umfasst das Rohrleitungssystem eines typischen Schulgebäudes. Das System besteht aus Trinkwasserversorgungs-, Einrichtungen und Geräten, Abwassersammel-, Lüftungs- und Regenwasserbewirtschaftungssystemen.
+
+Trinkwasserversorgungssystem:
+Das Trinkwasserversorgungssystem umfasst die eingehende Wasserzufuhr von der Hauptwasserleitung des Versorgungsunternehmens, einen Rückschlagverhinderer, einen Wasserzähler, eine Druckreduziervorrichtung sowie Verteilungsrohre im Gebäude zur Bereitstellung von Wasser für alle Einrichtungen und Geräte. Alle verwendeten Materialien sind bleifrei und entsprechen lokalen Vorschriften und Bestimmungen.
+Einrichtungen und Geräte:
+Zu den Einrichtungen gehören Waschbecken, Toiletten, Urinale, Trinkbrunnen, Duschen, Augenduschen und Laborausrüstungen. Alle Einrichtungen werden nach den Kriterien der Barrierefreiheit, niedriger Durchflussraten und Wasser sparenden Standards ausgewählt. Zu den Geräten zählen Geschirrspülmaschinen, Eismaschinen und Kleidungswaschanlagen mit heißem und kaltem Wasseranschluss.
+Sammel- und Entlüftungssystem (DWV):
+Das DWV-System besteht aus Schmutzwassertonnen, Dachabläufen, Belüftungen, Reinigungsöffnungen und Fallstricken, die dazu dienen, Abwasser von Einrichtungen und Geräten zu entfernen, während gleichzeitig verhindert wird, dass schädliche Gase in das Gebäude eindringen. Die verwendeten Materialien sind PVC oder Graugußrohre, -fittinge und -zubehörteile.
+Regenwasserbewirtschaftung:
+Die Regenwasserbewirtschaftung sieht vor, Niederschlagswasser von Dächern und anderen wasserundurchlässigen Oberflächen aufzunehmen, durch unterirdische Rohre abzuleiten und es an einem genehmigten Ort wieder abzugeben. Dies kann Bepumpungsanlagen, Retentions-/Entlastungspoldern oder andere Methoden umfassen, je nach lokalen Vorschriften und Bestimmungen.
+Wartung und Inspektion:
+Routinemäßige Wartung und Inspektion des Rohrleitungssystems gewährleisten seine Lebensdauer und ordnungsgemäße Funktion. Routineaufgaben umfassen das Überprüfen auf Lecks, Testen von Rückschlagverhinderern, Inspizieren von Einrichtungen und Geräten, Reinigen von Abflüssen und Gewährleistung der Codekonformität.
+Notfallmaßnahmen:
+Notfallmaßnahmen sollten festgelegt und dem Personal bekannt gemacht werden, um auf Plattfälle wie Überschwemmungen, Wasserrohrbrüche oder Gaslecks zu reagieren. Diese Maßnahmen umfassen das Absperren der Wasserzuflüsse, Kontaktaufnahme mit Notdiensten, Benachrichtigung von Einrichtungspersonal und Festlegen klarer Anweisungen für die Mitarbeiter.
+
