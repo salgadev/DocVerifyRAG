@@ -1,47 +1,44 @@
-# Use an official Python runtime as a parent image
-FROM python:3.9-slim AS backend
+# Stage 1: Build frontend
+FROM node:latest AS frontend
 
-# Set the working directory for the backend in the container
-WORKDIR /app
-
-# Install system dependencies
-RUN apt-get update \
-        && apt-get install -y --no-install-recommends gcc \
-        && rm -rf /var/lib/apt/lists/*
-
-# Copy backend application dependencies
-COPY requirements.txt /app/
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Copy all backend source code from the root directory
-COPY . /app/
-
-# Expose the port the backend app runs on
-EXPOSE 5000
-
-# Build frontend
-FROM node:14 AS frontend
-
-# Set the working directory for the frontend in the container
+# Set working directory for frontend
 WORKDIR /app/frontend
 
 # Copy frontend source code
-COPY frontend /app/frontend
+COPY frontend/package.json frontend/package-lock.json ./
+COPY frontend .
 
-# Install frontend dependencies and build
+# Install dependencies
 RUN npm install
+
+# Build frontend
 RUN npm run build
 
-# Merge frontend build with backend
-FROM backend AS final
+# Stage 2: Build backend
+FROM python:3.9-slim AS backend
 
-# Copy built frontend files to appropriate location for serving
-COPY --from=frontend /app/frontend/dist /app/frontend/dist
+# Set working directory for backend
+WORKDIR /app/backend
 
-# Add configuration to serve frontend files using Nginx
-# Example:
-# COPY nginx.conf /etc/nginx/nginx.conf
+# Copy backend source code
+COPY backend .
 
-# Start the backend server
-CMD ["python", "together_call.py"]
+# Install backend dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Stage 3: Serve frontend and backend using nginx and gunicorn
+FROM nginx:latest AS production
+
+# Copy built frontend files from the frontend stage to nginx
+COPY --from=frontend /app/frontend/dist /usr/share/nginx/html
+
+# Copy built backend code from the backend stage
+COPY --from=backend /app/backend /app/backend
+
+# Expose port 80 for nginx
+EXPOSE 80
+
+# Start gunicorn server for backend
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "app:app"]
 
