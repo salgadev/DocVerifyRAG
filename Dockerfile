@@ -1,27 +1,27 @@
-# Use an official Python runtime as a parent image
-FROM python:3.9-slim
+# Use node image as a base for building frontend
+FROM node:14 AS frontend
 
-# Set environment variables
-ENV EXAMPLE 1
-ENV EXAMPLE 2
+# Set the working directory for the frontend in the container
+WORKDIR /app/frontend
 
-# Set the working directory in the container
-WORKDIR /app
+# Copy frontend source code
+COPY frontend /app/frontend
 
-# Install system dependencies
-RUN apt-get update \
-	&& apt-get install -y --no-install-recommends gcc \
-	&& rm -rf  /var/lib/apt/lists/*
+# Install frontend dependencies
+RUN npm install
 
-# Install application dependencies
-COPY requirements.txt /app/
-RUN pip install --no-cache-dir -r requirements.txt
+# Build the frontend for production
+RUN npm run build
 
-# Copy the current directory contents into the container at /app
-COPY . /app/
+# Use nginx image to serve the built frontend
+FROM nginx:alpine AS production
 
-# Expose the port the app runs on
-EXPOSE 5000
+# Copy the built frontend from the previous stage to nginx
+COPY --from=frontend /app/frontend/build /usr/share/nginx/html
 
-# Run the application
-CMD ["python", "app.py"]
+# Expose port 80
+EXPOSE 80
+
+# Start nginx server
+CMD ["nginx", "-g", "daemon off;"]
+

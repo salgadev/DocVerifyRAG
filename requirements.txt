@@ -3,3 +3,8 @@ langchain-text-splitters
 langchain-together
 unstructured[local-inference]
 python-dotenv
+streamlit
+langchain
+openai
+chromadb
+tiktoken
