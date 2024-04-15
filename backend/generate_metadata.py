@@ -1,12 +1,46 @@
 import os
+
+import argparse
 import json
 import openai
+
 from dotenv import load_dotenv
-import argparse
+from langchain_community.document_loaders import TextLoader
+from langchain_community.document_loaders import UnstructuredPDFLoader
+from langchain_community.embeddings.fake import FakeEmbeddings
+from langchain_community.vectorstores import Vectara
 
 from schema import Metadata, BimDiscipline
 
 load_dotenv()
+
+vectara_customer_id = os.environ['VECTARA_CUSTOMER_ID']
+vectara_corpus_id = os.environ['VECTARA_CORPUS_ID']
+vectara_api_key = os.environ['VECTARA_API_KEY']
+
+vectorstore = Vectara(vectara_customer_id=vectara_customer_id,
+                      vectara_corpus_id=vectara_corpus_id,
+                      vectara_api_key=vectara_api_key)
+
+
+def ingest(file_path):
+    extension = filepath.split('.')[-1]
+    ext = extension.lower()
+    if ext == 'pdf':
+        loader = UnstructuredPDFLoader(file_path)
+    elif ext == 'txt':
+        loader = TextLoader(file_path)
+
+    # transform locally
+    documents = loader.load()
+    text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
+    docs = text_splitter.split_documents(documents)
+
+    vectara = Vectara.from_documents(docs, embedding=FakeEmbeddings(size=768))    
+    retriever = vectara.as_retriever()
+
+    return retriever
+
 
 def extract_metadata(filename):
     with open(filename, 'r') as f:
