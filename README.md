@@ -23,9 +23,8 @@
 
 </details>
 
-## Web App
-
-[link](https://link.com)
+## TRY the prototype
+[DocVerifyRAG](https://docverify-rag.vercel.app)
 
 ## Screenshots
 
@@ -87,7 +86,7 @@
 
 2. Install dependencies:
     ```bash
-    $ $ pip install -r requirements.txt
+    $ pip install -r requirements.txt
     ```
 
 ### Install using Docker
