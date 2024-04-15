@@ -103,7 +103,7 @@ Access the web interface and follow the prompts to upload documents, classify th
 | Sandra Ashipala | [GitHub](https://github.com/sandramsc) |
 | Elia Wäfler | [GitHub](https://github.com/eliawaefler) |
 | Carlos Salgado | [GitHub](https://github.com/salgadev) |
-| Your Name | [GitHub](https://github.com/name) |
+| Abdul Qadeer | [GitHub](https://github.com/AbdulQadeer-55) |
 
 ## License
 
