@@ -1,3 +1,16 @@
+## Higging Face configuration
+
+---
+title: Docverifyrag
+emoji: 🐠
+colorFrom: indigo
+colorTo: indigo
+sdk: streamlit
+sdk_version: 1.33.0
+app_file: app.py
+pinned: false
+---
+
 <!-- PROJECT TITLE -->
   <h1 align="center">DocVerifyRAG: Document Verification and Anomaly Detection</h1>
  <div id="header" align="center">
@@ -108,18 +121,6 @@ To deploy DocVerifyRAG using Docker, follow these steps:
 ### Usage
 
 Access the web interface and follow the prompts to upload documents, classify them, and verify metadata. The AI-powered anomaly detection system will automatically flag any discrepancies or errors in the document metadata, providing accurate and reliable document management solutions for hospitals.
-
-## Higging Face configuration
-
-
-title: Docverifyrag
-emoji: 🐠
-colorFrom: indigo
-colorTo: indigo
-sdk: streamlit
-sdk_version: 1.33.0
-app_file: app.py
-pinned: false
 
 
 ## Authors
