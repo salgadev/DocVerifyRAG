@@ -59,10 +59,11 @@ export const Features = () => {
             <CardFooter className="flex flex-wrap md:justify-center gap-4">
               <iframe
 	src="https://sandramsc-docverifyrag.hf.space"
-	style={{ border: 'none' }}
 	width="850"
-	height="450"
-></iframe> 
+style={{ border: 'none' }}
+	height="750"
+></iframe>
+
             </CardFooter>
           </Card>
         ))}
