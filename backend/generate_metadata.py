@@ -8,6 +8,8 @@ from dotenv import load_dotenv
 from langchain_community.document_loaders import TextLoader
 from langchain_community.document_loaders import UnstructuredPDFLoader
 from langchain_community.embeddings.fake import FakeEmbeddings
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+
 from langchain_community.vectorstores import Vectara
 
 from schema import Metadata, BimDiscipline
@@ -24,27 +26,46 @@ vectorstore = Vectara(vectara_customer_id=vectara_customer_id,
 
 
 def ingest(file_path):
-    extension = filepath.split('.')[-1]
+    extension = file_path.split('.')[-1]
     ext = extension.lower()
     if ext == 'pdf':
         loader = UnstructuredPDFLoader(file_path)
     elif ext == 'txt':
         loader = TextLoader(file_path)
+    else:
+        raise NotImplementedError('Only .txt or .pdf files are supported')
 
     # transform locally
     documents = loader.load()
-    text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=0,
+    separators=[
+        "\n\n",
+        "\n",
+        " ",
+        ",",        
+        "\uff0c",  # Fullwidth comma
+        "\u3001",  # Ideographic comma
+        "\uff0e",  # Fullwidth full stop
+        # "\u200B",  # Zero-width space (Asian languages)
+        # "\u3002",  # Ideographic full stop (Asian languages)
+        "",
+    ])
     docs = text_splitter.split_documents(documents)
+    #print(docs)
 
-    vectara = Vectara.from_documents(docs, embedding=FakeEmbeddings(size=768))    
-    retriever = vectara.as_retriever()
-
-    return retriever
+    return docs
 
 
-def extract_metadata(filename):
-    with open(filename, 'r') as f:
-        context = f.readlines()
+    # vectara = Vectara.from_documents(docs, embedding=FakeEmbeddings(size=768))    
+    # retriever = vectara.as_retriever()
+
+    # return retriever
+
+
+def extract_metadata(docs):    
+    # plain text     
+    context = "".join(
+        [doc.page_content.replace('\n\n','').replace('..','') for doc in docs])
 
     # Create client
     client = openai.OpenAI(
@@ -63,7 +84,7 @@ def extract_metadata(filename):
             },
             {
                 "role": "user",
-                "content": f"Analyze the provided document, which could be in either German or English. Extract the title, summarize it briefly in one sentence, and infer the discipline. Document:\n{' '.join(context)}"
+                "content": f"Analyze the provided document, which could be in either German or English. Extract the title, summarize it briefly in one sentence, and infer the discipline. Document:\n{context}"
             }
         ]
     )
@@ -82,5 +103,6 @@ if __name__ == "__main__":
         print("File '{}' not found or not accessible.".format(args.document))
         sys.exit(-1)
 
-    metadata = extract_metadata(args.document)
+    docs = ingest(args.document)
+    metadata = extract_metadata(docs)
     print(json.dumps(metadata, indent=2))
