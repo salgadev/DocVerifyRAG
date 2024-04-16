@@ -1,27 +1,44 @@
-# Use an official Python runtime as a parent image
-FROM python:3.9-slim
+# Stage 1: Build frontend
+FROM node:latest AS frontend
 
-# Set environment variables
-ENV EXAMPLE 1
-ENV EXAMPLE 2
+# Set working directory for frontend
+WORKDIR /app/frontend
 
-# Set the working directory in the container
-WORKDIR /app
+# Copy frontend source code
+COPY frontend/package.json frontend/package-lock.json ./
+COPY frontend .
 
-# Install system dependencies
-RUN apt-get update \
-	&& apt-get install -y --no-install-recommends gcc \
-	&& rm -rf  /var/lib/apt/lists/*
+# Install dependencies
+RUN npm install
 
-# Install application dependencies
-COPY requirements.txt /app/
+# Build frontend
+RUN npm run build
+
+# Stage 2: Build backend
+FROM python:3.9-slim AS backend
+
+# Set working directory for backend
+WORKDIR /app/backend
+
+# Copy backend source code
+COPY backend .
+
+# Install backend dependencies
+COPY backend/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the current directory contents into the container at /app
-COPY . /app/
+# Stage 3: Serve frontend and backend using nginx and gunicorn
+FROM nginx:latest AS production
 
-# Expose the port the app runs on
-EXPOSE 5000
+# Copy built frontend files from the frontend stage to nginx
+COPY --from=frontend /app/frontend/dist /usr/share/nginx/html
 
-# Run the application
-CMD ["python", "app.py"]
+# Copy built backend code from the backend stage
+COPY --from=backend /app/backend /app/backend
+
+# Expose port 80 for nginx
+EXPOSE 80
+
+# Start gunicorn server for backend
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "app:app"]
+
