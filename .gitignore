@@ -1,7 +1,9 @@
 .envrc
 .direnv/
 .env
-.venv
+*venv
 .ipynb_checkpoints
 flake.nix
 *__pycache__*
+.idea
+
