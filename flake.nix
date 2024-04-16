@@ -1,0 +1,1 @@
+/home/salgadev/code/dev-flakes/templates/langchain-rag/flake.nix
