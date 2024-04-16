@@ -23,9 +23,8 @@
 
 </details>
 
-## Web App
-
-[link](https://link.com)
+## TRY the prototype
+[DocVerifyRAG](https://docverify-rag.vercel.app)
 
 ## Screenshots
 
@@ -57,17 +56,35 @@
 
 ### Install locally
 
+#### Step 1 - Frontend
+
 1. Clone the repository:
     ```bash
     $ git clone https://github.com/eliawaefler/DocVerifyRAG.git
     ```
 
-2. Navigate to the project directory:
+2. Navigate to the frontend directory:
     ```bash
-    $ cd DocVerifyRAG
+    $ cd DocVerifyRAG/frontend
     ```
 
 3. Install dependencies:
+    ```bash
+    $ npm install
+    ```
+4. Run project:
+    ```bash
+    $ npm run dev
+    ```
+
+#### Step 2 - Backend
+
+1. Navigate to the backend directory:
+    ```bash
+    $ cd DocVerifyRAG/backend
+    ```
+
+2. Install dependencies:
     ```bash
     $ pip install -r requirements.txt
     ```
