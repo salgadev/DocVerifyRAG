@@ -6,4 +6,7 @@
 flake.nix
 *__pycache__*
 .idea
+flake.lock
+flake.nix
+docs/
 

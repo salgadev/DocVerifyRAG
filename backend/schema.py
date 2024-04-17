@@ -5,11 +5,11 @@ from pydantic import BaseModel, Field, conlist
 from enum import Enum
 
 class BimDiscipline(str, Enum):
-    plumbing = 'S - Sanitär'
+    plumbing = 'S - Sanitaer'
     network = 'D - Datennetz'
     heating = 'H - Heizung'
     electrical = 'E - Elektro'
-    ventilation = 'L - Lüftung'
+    ventilation = 'L - Lueftung'
     architecture = 'A - Architektur'
 
 # Define the schema for the output.
