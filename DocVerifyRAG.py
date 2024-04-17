@@ -87,7 +87,7 @@ def safe_vec_store():
 
 def main():
     load_dotenv()
-    st.set_page_config(page_title="Anna Seiler Haus KI-Assistent", page_icon=":hospital:")
+    st.set_page_config(page_title="DOC Verify RAG", page_icon=":hospital:")
     st.write(css, unsafe_allow_html=True)
 
     st.subheader("Your documents")
@@ -99,7 +99,7 @@ def main():
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = None
 
-    st.header("Anna Seiler Haus KI-Assistent ASH :hospital:")
+    st.header("DOC Verify RAG :hospital:")
     user_question = st.text_input("Ask a question about your documents:")
     if user_question:
         handle_userinput(user_question)
