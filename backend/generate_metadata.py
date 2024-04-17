@@ -91,9 +91,9 @@ def extract_metadata(docs):
             }
         ]
     )
+    # returns a dictionary
+    return json.loads(chat_completion.choices[0].message.content)
 
-    created_user = json.loads(chat_completion.choices[0].message.content)
-    return created_user
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate metadata for a BIM document")
@@ -108,4 +108,4 @@ if __name__ == "__main__":
 
     docs = ingest(args.document)
     metadata = extract_metadata(docs)
-    print(json.dumps(metadata, indent=2))
+    print(metadata)
