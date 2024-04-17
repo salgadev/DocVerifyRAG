@@ -1,16 +1,3 @@
-## Higging Face configuration
-
----
-title: Docverifyrag
-emoji: 🐠
-colorFrom: indigo
-colorTo: indigo
-sdk: streamlit
-sdk_version: 1.33.0
-app_file: app.py
-pinned: false
----
-
 <!-- PROJECT TITLE -->
   <h1 align="center">DocVerifyRAG: Document Verification and Anomaly Detection</h1>
  <div id="header" align="center">
