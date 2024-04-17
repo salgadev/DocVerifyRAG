@@ -20,13 +20,19 @@
           python-pkgs.matplotlib
           python-pkgs.requests
           python-pkgs.langchain-community
+          python-pkgs.langchain
           python-pkgs.langchain-text-splitters
-          python-pkgs.unstructured          
+          python-pkgs.unstructured
           python-pkgs.openai
           python-pkgs.pydantic
           python-pkgs.python-dotenv
           python-pkgs.configargparse
           python-pkgs.streamlit
+          python-pkgs.pip
+          python-pkgs.lark
+          python-pkgs.jupyter
+          python-pkgs.notebook
+          python-pkgs.sentence-transformers
           pkgs.unstructured-api
         ]))
       ];
