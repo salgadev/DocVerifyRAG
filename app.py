@@ -118,7 +118,6 @@ def handle_userinput(user_question):
                 st.write(f"Source Document: {message.source}", unsafe_allow_html=True)
 
 
-
 def safe_vec_store():
     # USE VECTARA INSTEAD
     os.makedirs('vectorstore', exist_ok=True)
@@ -135,40 +134,42 @@ def main():
     load_dotenv()
     st.set_page_config(page_title="Doc Verify RAG", page_icon=":hospital:")
     st.write(css, unsafe_allow_html=True)
-    st.session_state.classify = False
+    if not "classify" in st.session_state:
+        st.session_state.classify = False
     st.subheader("Your documents")
-    pdf_docs = st.file_uploader("Upload your PDFs here and click on 'Process'", accept_multiple_files=not st.session_state.classify)
-    filenames = [file.name for file in pdf_docs if file is not None]
-
+    if st.session_state.classify:
+        pdf_doc = st.file_uploader("Upload your PDFs here and click on 'Process'", accept_multiple_files=False)
+    else:
+        pdf_docs = st.file_uploader("Upload your PDFs here and click on 'Process'", accept_multiple_files=True)
+        filenames = [file.name for file in pdf_docs if file is not None]
     if st.button("Process"):
         with st.spinner("Processing"):
             if st.session_state.classify:
                 # THE CLASSIFICATION APP
-                plain_text_doc = ingest(pdf_docs)
-
-            # NORMAL RAG
-            loaded_vec_store = None
-            for filename in filenames:
-                if ".pkl" in filename:
-                    file_path = os.path.join('vectorstore', filename)
-                    with open(file_path, 'rb') as f:
-                        loaded_vec_store = pickle.load(f)
-            raw_text = get_pdf_text(pdf_docs)
-            text_chunks = get_text_chunks(raw_text)
-            vec = get_vectorstore(text_chunks)
-            if loaded_vec_store:
-                vec.merge_from(loaded_vec_store)
-                st.warning("loaded vectorstore")
-            if "vectorstore" in st.session_state:
-                vec.merge_from(st.session_state.vectorstore)
-                st.warning("merged to existing")
-            st.session_state.vectorstore = vec
-            st.session_state.conversation = get_conversation_chain(vec)
+                st.write("Classifying")
+                plain_text_doc = ingest(pdf_doc.name)
+                classification_result = extract_metadata(plain_text_doc)
+                st.write(classification_result)
+            else:
+                # NORMAL RAG
+                loaded_vec_store = None
+                for filename in filenames:
+                    if ".pkl" in filename:
+                        file_path = os.path.join('vectorstore', filename)
+                        with open(file_path, 'rb') as f:
+                            loaded_vec_store = pickle.load(f)
+                raw_text = get_pdf_text(pdf_docs)
+                text_chunks = get_text_chunks(raw_text)
+                vec = get_vectorstore(text_chunks)
+                if loaded_vec_store:
+                    vec.merge_from(loaded_vec_store)
+                    st.warning("loaded vectorstore")
+                if "vectorstore" in st.session_state:
+                    vec.merge_from(st.session_state.vectorstore)
+                    st.warning("merged to existing")
+                st.session_state.vectorstore = vec
+                st.session_state.conversation = get_conversation_chain(vec)
         st.success("data loaded")
-        if st.session_state.classify:
-            # THE CLASSIFICATION APP
-            classification_result = extract_metadata(plain_text_doc)
-            st.write(classification_result)
 
 
     if "conversation" not in st.session_state:
@@ -180,7 +181,6 @@ def main():
     user_question = st.text_input("Ask a question about your documents:")
     if user_question:
         handle_userinput(user_question)
-
     with st.sidebar:
 
         st.subheader("Classification Instrucitons")
@@ -188,8 +188,9 @@ def main():
         filenames = [file.name for file in classifier_docs if file is not None]
 
         if st.button("Process Classification"):
+            st.session_state.classify = True
             with st.spinner("Processing"):
-                st.session_state.classify = True
+                st.warning("set classify")
                 time.sleep(3)
 
 
