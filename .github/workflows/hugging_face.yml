@@ -16,5 +16,6 @@ jobs:
       - name: Push to hub
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}                 
+          HF_USER: ${{ env.HF_USER }}
         run: git push https://$HF_USER:$HF_TOKEN@huggingface.co/spaces/$HF_USER/docverifyrag main
 
