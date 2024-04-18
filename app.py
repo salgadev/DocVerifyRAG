@@ -1,6 +1,5 @@
 import time
 import streamlit as st
-from dotenv import load_dotenv
 from PyPDF2 import PdfReader
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings, HuggingFaceInstructEmbeddings
@@ -11,7 +10,7 @@ from langchain.chains import ConversationalRetrievalChain
 import os
 import pickle
 from datetime import datetime
-from backend.generate_metadata import extract_metadata, ingest
+from backend.generate_metadata import generate_metadata, ingest
 
 
 css = '''
@@ -43,7 +42,8 @@ css = '''
 bot_template = '''
 <div class="chat-message bot">
     <div class="avatar">
-        <img src="https://i.ibb.co/cN0nmSj/Screenshot-2023-05-28-at-02-37-21.png" style="max-height: 78px; max-width: 78px; border-radius: 50%; object-fit: cover;">
+        <img src="https://i.ibb.co/cN0nmSj/Screenshot-2023-05-28-at-02-37-21.png" 
+        style="max-height: 78px; max-width: 78px; border-radius: 50%; object-fit: cover;">
     </div>
     <div class="message">{{MSG}}</div>
 </div>
@@ -65,7 +65,6 @@ def get_pdf_text(pdf_docs):
         for page in pdf_reader.pages:
             text += page.extract_text()
     return text
-
 
 
 def get_text_chunks(text):
@@ -132,12 +131,20 @@ def safe_vec_store():
 
 
 def main():
-    load_dotenv()
     st.set_page_config(page_title="Doc Verify RAG", page_icon=":hospital:")
     st.write(css, unsafe_allow_html=True)
-    if not "classify" in st.session_state:
+    if "openai_api_key" not in st.session_state:
+        st.session_state.openai_api_key = False
+    if "openai_org" not in st.session_state:
+        st.session_state.openai_org = False
+    if "classify" not in st.session_state:
         st.session_state.classify = False
+    def set_pw():
+        st.session_state.openai_api_key = True
     st.subheader("Your documents")
+    # OPENAI_ORG_ID = st.text_input("OPENAI ORG ID:")
+    OPENAI_API_KEY = st.text_input("OPENAI API KEY:", type="password",
+                                   disabled=st.session_state.openai_api_key, on_change=set_pw)
     if st.session_state.classify:
         pdf_doc = st.file_uploader("Upload your PDFs here and click on 'Process'", accept_multiple_files=False)
     else:
@@ -149,7 +156,7 @@ def main():
                 # THE CLASSIFICATION APP
                 st.write("Classifying")
                 plain_text_doc = ingest(pdf_doc.name)
-                classification_result = extract_metadata(plain_text_doc)
+                classification_result = generate_metadata(plain_text_doc)
                 st.write(classification_result)
             else:
                 # NORMAL RAG
