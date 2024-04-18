@@ -109,6 +109,9 @@ To deploy DocVerifyRAG using Docker, follow these steps:
 
 Access the web interface and follow the prompts to upload documents, classify them, and verify metadata. The AI-powered anomaly detection system will automatically flag any discrepancies or errors in the document metadata, providing accurate and reliable document management solutions for hospitals.
 
+| title           | emoji                                      |  colorFrom          | colorTo                                     |  sdk          | sdk_version                                     |  app_file           | pinned                                  | 
+| -------------- | ---------------------------- |-------------- | ----------------------------------------- |-------------- | ----------------------------------------- |
+| DocVerifyRAG | 🐠 | Sandra Ashipala | pink | Sandra Ashipala | green | streamlit | 1.27.0 | app.py | false |
 
 
 ## Authors
