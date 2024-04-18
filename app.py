@@ -12,11 +12,17 @@ uploaded_file = st.file_uploader("Choose a PDF file", type=["pdf","txt"])
 
 if uploaded_file is not None:
     try:
-        file_ext = uploaded_file.name.split('.')[-1].lower()
-        pdf_file = io.BytesIO(uploaded_file.read())
-        docs = ingest(pdf_file, file_ext)
+        with tempfile.NamedTemporaryFile(delete=False, suffix=os.path.splitext(uploaded_file.name)[1]) as tmp:
+            tmp.write(uploaded_file.read())
+            file_path = tmp.name
+
+        docs = ingest(file_path)
         metadata = generate_metadata(docs)
         st.write('## Converted Text')
         st.write(metadata)
+
+        # Clean up the temporary file
+        os.remove(file_path)
+
     except Exception as e:
         st.error(f'Error: {e}')

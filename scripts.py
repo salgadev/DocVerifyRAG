@@ -15,11 +15,13 @@ load_dotenv()
 
 import io
 
-def ingest(file_obj, file_ext='pdf'):
-    if file_ext == 'pdf':
-        loader = UnstructuredPDFLoader(file_obj)
-    elif file_ext == 'txt':
-        loader = TextLoader(file_obj)
+def ingest(file_path):
+    extension = os.path.splitext(file_path)[1].lower()
+
+    if extension == '.pdf':
+        loader = UnstructuredPDFLoader(file_path)
+    elif extension == '.txt':
+        loader = TextLoader(file_path)
     else:
         raise NotImplementedError('Only .txt or .pdf files are supported')
 
@@ -41,6 +43,7 @@ def ingest(file_obj, file_ext='pdf'):
     docs = text_splitter.split_documents(documents)
 
     return docs
+
 
 
 def generate_metadata(docs):
