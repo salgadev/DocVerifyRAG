@@ -72,8 +72,9 @@ def generate_metadata(docs):
     )
 
     # Call the LLM with the JSON schema
+    model_name = "mistralai/Mixtral-8x7B-Instruct-v0.1"
     chat_completion = client.chat.completions.create(
-        model="mistralai/Mixtral-8x7B-Instruct-v0.1",        
+        model=model_name,        
         messages=[
             {
                 "role": "system",

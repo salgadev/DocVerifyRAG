@@ -12,11 +12,10 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-          lfs: true
-      - name: Navigate to frontend directory
-        run: cd ./frontend
+          lfs: true      
       - name: Push to hub
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: git push https://salgadev:$HF_TOKEN@huggingface.co/spaces/salgadev/docverifyrag main
+          HF_USER: ${{ variables.HF_USER }}
+        run: git push https://$HF_USER:$HF_TOKEN@huggingface.co/spaces/$HF_USER/docverifyrag main
 
