@@ -73,7 +73,7 @@ def generate_metadata(docs):
 
     # Call the LLM with the JSON schema
     chat_completion = client.chat.completions.create(
-        model=model_name,        
+        model=MODEL_NAME,        
         messages=[
             {
                 "role": "system",
