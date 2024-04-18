@@ -111,9 +111,16 @@ Access the web interface and follow the prompts to upload documents, classify th
 
 ### Hugging Face config
 
-| title        | emoji | colorFrom       | colorTo | sdk   | sdk_version | app_file | pinned |
-|--------------|-------|-----------------|---------|-------|-------------|----------|--------|
-| DocVerifyRAG | 🐠    | Sandra Ashipala | pink    | streamlit | 1.27.0 | app.py   | false  |
+---
+title: DocVerifyRAG
+emoji: 🐠
+colorFrom: pink
+colorTo: green
+sdk: streamlit
+sdk_version: 1.27.0
+app_file: app.py
+pinned: false
+---
 
 
 
