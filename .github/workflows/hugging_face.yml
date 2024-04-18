@@ -18,5 +18,5 @@ jobs:
       - name: Push to hub
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: git push https://AIhackathons:$HF_TOKEN@huggingface.co/spaces/AIhackathons/docverifyrag main
+        run: git push https://salgadev:$HF_TOKEN@huggingface.co/spaces/salgadev/docverifyrag main
 
