@@ -109,20 +109,6 @@ To deploy DocVerifyRAG using Docker, follow these steps:
 
 Access the web interface and follow the prompts to upload documents, classify them, and verify metadata. The AI-powered anomaly detection system will automatically flag any discrepancies or errors in the document metadata, providing accurate and reliable document management solutions for hospitals.
 
-### Hugging Face config
-
----
-title: DocVerifyRAG
-emoji: 🐠
-colorFrom: pink
-colorTo: green
-sdk: streamlit
-sdk_version: 1.27.0
-app_file: app.py
-pinned: false
----
-
-
 
 
 ## Authors
@@ -134,13 +120,6 @@ pinned: false
 | Carlos Salgado | [GitHub](https://github.com/salgadev) |
 | Abdul Qadeer | [GitHub](https://github.com/AbdulQadeer-55) |
 
-## License
-
-[![GitLicense](https://img.shields.io/badge/License-MIT-lime.svg)](https://github.com/eliawaefler/DocVerifyRAG/blob/main/LICENSE)
-____
-
-
-
 
 ---
 title: DocVerifyRAG
@@ -152,3 +131,8 @@ sdk_version: 1.27.0
 app_file: app.py
 pinned: false
 ---
+
+
+## License
+
+[![GitLicense](https://img.shields.io/badge/License-MIT-lime.svg)](https://github.com/eliawaefler/DocVerifyRAG/blob/main/LICENSE)
