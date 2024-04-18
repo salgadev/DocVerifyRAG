@@ -2,7 +2,7 @@ import time
 import streamlit as st
 from PyPDF2 import PdfReader
 from langchain.text_splitter import CharacterTextSplitter
-from langchain.embeddings import OpenAIEmbeddings, HuggingFaceInstructEmbeddings
+from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import FAISS
 from langchain.chat_models import ChatOpenAI
 from langchain.memory import ConversationBufferMemory
@@ -112,16 +112,11 @@ def handle_userinput(user_question):
             # Display AI response
             st.write(bot_template.replace("{{MSG}}", message.content), unsafe_allow_html=True)
 
-            # THIS DOESNT WORK, SOMEONE PLS FIX
-            # Display source document information if available in the message
-            if hasattr(message, 'source') and message.source:
-                st.write(f"Source Document: {message.source}", unsafe_allow_html=True)
-
 
 def safe_vec_store():
     # USE VECTARA INSTEAD
     os.makedirs('vectorstore', exist_ok=True)
-    filename = 'vectores' + datetime.now().strftime('%Y%m%d%H%M') + '.pkl'
+    filename = 'vectors' + datetime.now().strftime('%Y%m%d%H%M') + '.pkl'
     file_path = os.path.join('vectorstore', filename)
     vector_store = st.session_state.vectorstore
 
@@ -131,18 +126,21 @@ def safe_vec_store():
 
 
 def main():
-    st.set_page_config(page_title="Doc Verify RAG", page_icon=":hospital:")
+    st.set_page_config(page_title="Doc Verify RAG", page_icon=":mag:")
     st.write(css, unsafe_allow_html=True)
+    st.header("Doc Verify RAG :mag:")
+
     if "openai_api_key" not in st.session_state:
         st.session_state.openai_api_key = False
     if "openai_org" not in st.session_state:
         st.session_state.openai_org = False
     if "classify" not in st.session_state:
         st.session_state.classify = False
+
     def set_pw():
         st.session_state.openai_api_key = True
+
     st.subheader("Your documents")
-    # OPENAI_ORG_ID = st.text_input("OPENAI ORG ID:")
     OPENAI_API_KEY = st.text_input("OPENAI API KEY:", type="password",
                                    disabled=st.session_state.openai_api_key, on_change=set_pw)
     if st.session_state.classify:
@@ -179,19 +177,18 @@ def main():
                 st.session_state.conversation = get_conversation_chain(vec)
         st.success("data loaded")
 
-
     if "conversation" not in st.session_state:
         st.session_state.conversation = None
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = None
 
-    st.header("Doc Verify RAG :hospital:")
     user_question = st.text_input("Ask a question about your documents:")
     if user_question:
         handle_userinput(user_question)
     with st.sidebar:
-        st.subheader("Classification Instrucitons")
-        classifier_docs = st.file_uploader("Upload your instructions here and click on 'Process'", accept_multiple_files=True)
+        st.subheader("Classification instructions")
+        classifier_docs = st.file_uploader("Upload your instructions here and click on 'Process'",
+                                           accept_multiple_files=True)
         filenames = [file.name for file in classifier_docs if file is not None]
 
         if st.button("Process Classification"):
@@ -200,8 +197,6 @@ def main():
                 st.warning("set classify")
                 time.sleep(3)
 
-
-        # Save and Load Embeddings
         if st.button("Save Embeddings"):
             if "vectorstore" in st.session_state:
                 safe_vec_store()
