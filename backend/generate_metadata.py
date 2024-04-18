@@ -1,4 +1,5 @@
 import os
+import io
 import argparse
 import json
 import openai
@@ -12,13 +13,13 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 load_dotenv()
 
 
-def ingest(file_path):
-    extension = file_path.split('.')[-1]
-    ext = extension.lower()
-    if ext == 'pdf':
-        loader = UnstructuredPDFLoader(file_path)
-    elif ext == 'txt':
-        loader = TextLoader(file_path)
+import io
+
+def ingest(file_obj, file_ext='pdf'):
+    if file_ext == 'pdf':
+        loader = UnstructuredPDFLoader(file_obj)
+    elif file_ext == 'txt':
+        loader = TextLoader(file_obj)
     else:
         raise NotImplementedError('Only .txt or .pdf files are supported')
 
@@ -29,7 +30,7 @@ def ingest(file_path):
         "\n\n",
         "\n",
         " ",
-        ",",        
+        ",",
         "\uff0c",  # Fullwidth comma
         "\u3001",  # Ideographic comma
         "\uff0e",  # Fullwidth full stop
