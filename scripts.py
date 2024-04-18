@@ -12,8 +12,8 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 load_dotenv()
 
+MODEL_NAME = "mistralai/Mixtral-8x7B-Instruct-v0.1"
 
-import io
 
 def ingest(file_path):
     extension = os.path.splitext(file_path)[1].lower()
@@ -72,7 +72,6 @@ def generate_metadata(docs):
     )
 
     # Call the LLM with the JSON schema
-    model_name = "mistralai/Mixtral-8x7B-Instruct-v0.1"
     chat_completion = client.chat.completions.create(
         model=model_name,        
         messages=[

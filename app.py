@@ -3,7 +3,7 @@ import os
 import streamlit as st
 import tempfile
 
-from scripts import generate_metadata, ingest, model_name
+from scripts import generate_metadata, ingest, MODEL_NAME
 
 
 st.title('DocVerifyRAG')
