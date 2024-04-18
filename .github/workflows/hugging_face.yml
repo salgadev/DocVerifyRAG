@@ -14,7 +14,7 @@ jobs:
           fetch-depth: 0
           lfs: true
       - name: Navigate to frontend directory
-        run: cd DocVerifyRAG/frontend
+        run: cd DocVerifyRAG/frontend/
       - name: Push to hub
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
