@@ -190,7 +190,6 @@ def main():
     if user_question:
         handle_userinput(user_question)
     with st.sidebar:
-
         st.subheader("Classification Instrucitons")
         classifier_docs = st.file_uploader("Upload your instructions here and click on 'Process'", accept_multiple_files=True)
         filenames = [file.name for file in classifier_docs if file is not None]
