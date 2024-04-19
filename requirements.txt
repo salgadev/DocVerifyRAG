@@ -1,7 +1,7 @@
 langchain_community
 langchain-text-splitters
 langchain-together
-unstructured[local-inference]
+unstructured[all-docs]
 python-dotenv
 streamlit
 langchain
