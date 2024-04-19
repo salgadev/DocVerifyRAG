@@ -93,7 +93,7 @@ def generate_metadata(docs):
 
     You are a helpful assistant that understands BIM documents and engineering disciplines. Your answer should be in JSON format and only include the filename, a short description, and the engineering discipline the document belongs to, distinguishing between {[d.value for d in BimDiscipline]} based on the given document."
 
-    Analyze the provided document, which could be in either German or English. Extract the filename, its description, and infer the engineering discipline it belongs to. Respond in both English and German. Document:
+    Analyze the provided document, which could be in either German or English. Extract the filename, its description, and infer the engineering discipline it belongs to. Document:
     context="
     """     
     # plain text     
