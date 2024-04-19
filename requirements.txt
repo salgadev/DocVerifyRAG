@@ -6,6 +6,5 @@ openai
 streamlit
 python-dotenv
 sentence-transformers
-iso639-lang
 unstructured[pdf]
 pypdf
