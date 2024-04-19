@@ -7,5 +7,5 @@ streamlit
 python-dotenv
 sentence-transformers
 iso639-lang
-poppler
-unstructured[all-docs]
+unstructured[pdf]
+pypdf

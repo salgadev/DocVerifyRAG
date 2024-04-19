@@ -5,8 +5,11 @@ import json
 import openai
 import sys
 from dotenv import load_dotenv
+
 from langchain_community.document_loaders import TextLoader
+from langchain_community.document_loaders import PyPDFLoader
 from langchain_community.document_loaders import UnstructuredPDFLoader
+
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import Vectara
 from langchain_core.output_parsers import StrOutputParser
@@ -56,35 +59,35 @@ def get_sources(documents):
 def get_summary(documents):
     return documents[-1].page_content
 
-def ingest(file_path):
-    extension = os.path.splitext(file_path)[1].lower()
-
-    if extension == '.pdf':
+def ingest(file_path):    
+    try:
+        loader = PyPDFLoader(file_path)        
+        documents = loader.load()
+        print('Loaded PyPDFLoader')
+    except Exception as e:
+        print(f'{e}')
         loader = UnstructuredPDFLoader(file_path)
-    elif extension == '.txt':
-        loader = TextLoader(file_path)
-    else:
-        raise NotImplementedError('Only .txt or .pdf files are supported')
+        documents = loader.load()
+        print('Loaded UnstructuredPDFLoader')  
+    finally:    
+        # transform locally
+        documents = loader.load()
+        text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=0,
+        separators=[
+            "\n\n",
+            "\n",
+            " ",
+            ",",
+            "\uff0c",  # Fullwidth comma
+            "\u3001",  # Ideographic comma
+            "\uff0e",  # Fullwidth full stop
+            # "\u200B",  # Zero-width space (Asian languages)
+            # "\u3002",  # Ideographic full stop (Asian languages)
+            "",
+        ])
+        docs = text_splitter.split_documents(documents)
 
-    # transform locally
-    documents = loader.load()
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=0,
-    separators=[
-        "\n\n",
-        "\n",
-        " ",
-        ",",
-        "\uff0c",  # Fullwidth comma
-        "\u3001",  # Ideographic comma
-        "\uff0e",  # Fullwidth full stop
-        # "\u200B",  # Zero-width space (Asian languages)
-        # "\u3002",  # Ideographic full stop (Asian languages)
-        "",
-    ])
-    docs = text_splitter.split_documents(documents)
-
-    return docs
-
+        return docs
 
 
 def generate_metadata(docs):
@@ -126,8 +129,9 @@ def generate_metadata(docs):
             }
         ]
     )
+    return chat_completion.choices[0].message.content
 
-    return json.loads(chat_completion.choices[0].message.content)    
+    #return json.loads(chat_completion.choices[0].message.content)    
 
 
 def analyze_metadata(filename, description, discipline):
