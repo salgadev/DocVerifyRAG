@@ -42,6 +42,8 @@
           python-pkgs.lark
           python-pkgs.sentence-transformers
           pkgs.unstructured-api
+          pkgs.poppler
+          pkgs.haskellPackages.iso639
         ]))
       ];
 
